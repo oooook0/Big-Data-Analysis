@@ -1,0 +1,17 @@
+#!/bin/bash
+#PBS -q development
+#PBS -N zijun_scrub
+#PBS -l select=1:ncpus=8
+#PBS -V
+
+# change to the working directory 
+cd $PBS_O_WORKDIR
+
+echo ">>>> Begin zijun_scrub"
+
+# actual binary (with IO redirections) and required input 
+# parameters is called in the next line
+module load python/2.7.12_anaconda 
+mpirun -np 8 python /scratch/huang.zijun/2017-MATH-9898-Huang-Zijun/assignment_1/SCRUB.py -file data-big.txt > output.txt 2>&1
+
+echo "ALL DONE""
